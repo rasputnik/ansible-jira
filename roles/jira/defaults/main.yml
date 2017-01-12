@@ -1,0 +1,19 @@
+---
+
+jira_version: atlassian-jira-6.4.14
+
+# shouldn't need to change the rest of these
+
+jira_user: jira
+# i.e. '~jira' - not to be confused with jira_home
+jira_userhome: /opt/jira
+
+# JIRA_HOME - versioned install directory
+# e.g /opt/jira/atlassian-jira-6.4.14-standalone
+# - auto-extracted from jira_tarurl
+jira_home: "{{ jira_userhome }}/{{ jira_version }}-standalone"
+
+# download jira_tarball from jira_tarurl to jira_tarcache
+jira_tarball: "{{ jira_version }}.tar.gz"
+jira_tarurl: "https://downloads.atlassian.com/software/jira/downloads/{{ jira_tarball }}"
+jira_tarcache: "{{ jira_userhome }}/{{ jira_tarball }}"
