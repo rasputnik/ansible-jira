@@ -1,0 +1,5 @@
+---
+
+- hosts: jiras
+  roles:
+    - jira
