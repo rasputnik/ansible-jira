@@ -2,4 +2,5 @@
 
 - hosts: jiras
   roles:
+    - openjdk8
     - jira
