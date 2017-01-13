@@ -1,22 +1,22 @@
 ---
 
 - name: create {{ jira_user }} account
+  become: yes
   user: name={{ jira_user }} comment="Jira"
         createhome=yes home={{ jira_userhome }}
-  become: yes
 
 # workaround for SNI support, see:
 #   https://github.com/ansible/ansible-modules-core/issues/1716
 - name: download {{ jira_tarurl }}
+  become: yes
+  become_user: "{{ jira_user }}"
   command: curl -s -O {{ jira_tarurl }}
            creates="{{ jira_tarcache }}"
            chdir="{{ jira_userhome }}"
-  become: yes
-  become_user: "{{ jira_user }}"
 
 - name: extract {{ jira_tarcache }} to {{ jira_home }}
-  unarchive: src={{ jira_tarcache }} dest={{ jira_userhome }}
-             remote_src=yes creates={{ jira_home }}
   become: yes
   become_user: "{{ jira_user }}"
+  unarchive: src={{ jira_tarcache }} dest={{ jira_userhome }}
+             remote_src=yes creates={{ jira_home }}
 
