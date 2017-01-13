@@ -4,3 +4,4 @@
   roles:
     - openjdk8
     - jira
+    - mysql
