@@ -14,6 +14,11 @@
            creates="{{ jira_tarcache }}"
            chdir="{{ jira_userhome }}"
 
+- name: create JIRA_HOME = {{ jira_home }}
+  become: yes
+  become_user: "{{ jira_user }}"
+  file: path={{ jira_home }} state=directory
+  
 - name: extract {{ jira_tarcache }} to {{ jira_home }}
   become: yes
   become_user: "{{ jira_user }}"

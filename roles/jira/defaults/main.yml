@@ -13,6 +13,9 @@ jira_userhome: /opt/jira
 # - auto-extracted from jira_tarurl
 jira_distdir: "{{ jira_userhome }}/{{ jira_version }}-standalone"
 
+# jira_home == writable data directory
+jira_home: "{{ jira_userhome }}/jirahome"
+
 # download jira_tarball from jira_tarurl to jira_tarcache
 jira_tarball: "{{ jira_version }}.tar.gz"
 jira_tarurl: "https://downloads.atlassian.com/software/jira/downloads/{{ jira_tarball }}"
