@@ -18,5 +18,14 @@
   become: yes
   become_user: "{{ jira_user }}"
   unarchive: src={{ jira_tarcache }} dest={{ jira_userhome }}
-             remote_src=yes creates={{ jira_home }}
+             remote_src=yes creates={{ jira_distdir }}
+
+- name: template sysconfig and init script
+  become: yes
+  template: src=.{{ item }}.j2
+            dest={{ item }}
+            mode=0555 owner=root group=root
+  with_items:
+    - /etc/sysconfig/jira
+    - /etc/init.d/jira
 

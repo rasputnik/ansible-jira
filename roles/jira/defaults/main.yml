@@ -8,10 +8,10 @@ jira_user: jira
 # i.e. '~jira' - not to be confused with jira_home
 jira_userhome: /opt/jira
 
-# JIRA_HOME - versioned install directory
+# jira_distdir == versioned install directory
 # e.g /opt/jira/atlassian-jira-6.4.14-standalone
 # - auto-extracted from jira_tarurl
-jira_home: "{{ jira_userhome }}/{{ jira_version }}-standalone"
+jira_distdir: "{{ jira_userhome }}/{{ jira_version }}-standalone"
 
 # download jira_tarball from jira_tarurl to jira_tarcache
 jira_tarball: "{{ jira_version }}.tar.gz"
