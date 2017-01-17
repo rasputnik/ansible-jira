@@ -18,18 +18,21 @@
   become: yes
   become_user: "{{ jira_user }}"
   file: path={{ jira_home }} state=directory
+  notify: bounce jira
   
 - name: extract {{ jira_tarcache }} to {{ jira_home }}
   become: yes
   become_user: "{{ jira_user }}"
   unarchive: src={{ jira_tarcache }} dest={{ jira_userhome }}
              remote_src=yes creates={{ jira_distdir }}
+  notify: bounce jira
 
 - name: upstart script
   become: yes
   template: src=etc/init/jira.conf.j2
             dest=/etc/init/jira.conf
             mode=0555 owner=root group=root
+  notify: bounce jira
 
 - name: start jira service
   become: yes

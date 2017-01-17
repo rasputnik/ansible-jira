@@ -1,0 +1,5 @@
+---
+
+- name: bounce jira
+  become: yes
+  service: name=jira state=restarted
