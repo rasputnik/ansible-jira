@@ -25,12 +25,12 @@
   unarchive: src={{ jira_tarcache }} dest={{ jira_userhome }}
              remote_src=yes creates={{ jira_distdir }}
 
-- name: template sysconfig and init script
+- name: upstart script
   become: yes
-  template: src=.{{ item }}.j2
-            dest={{ item }}
+  template: src=etc/init/jira.conf.j2
+            dest=/etc/init/jira.conf
             mode=0555 owner=root group=root
-  with_items:
-    - /etc/sysconfig/jira
-    - /etc/init.d/jira
 
+- name: start jira service
+  become: yes
+  service: name=jira state=started enabled=yes
