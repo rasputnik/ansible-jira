@@ -4,16 +4,15 @@ description "Atlassian Jira"
 start on stopped rc RUNLEVEL=[2345]
 stop on runlevel [06]
 
-env JIRA_USER='{{ jira_user }}'
-
-env JIRA_HOME='{{ jira_home }}'
-env JAVA_HOME='{{ java8_home }}'
-
 script
-su - $JIRA_USER -c ' cd {{ jira_distdir }} && exec ./bin/start-jira.sh -fg'
+sudo -u {{ jira_user }} -i <<EOF
+  export JIRA_HOME={{ jira_home }}
+  export JAVA_HOME={{ java8_home }}
+  cd {{ jira_distdir }}
+  exec ./bin/start-jira.sh -fg
+EOF
 end script
 
 respawn
 respawn limit 10 10
 kill timeout 10
-
