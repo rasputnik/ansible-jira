@@ -27,6 +27,13 @@
              remote_src=yes creates={{ jira_distdir }}
   notify: bounce jira
 
+- name: add mysql 5.1.40 JDBC driver
+  copy: src=mysql-connector-java-5.1.40-bin.jar
+        dest="{{ jira_distdir }}/lib/mysql-connector-java-5.1.40-bin.jar"
+  become: yes
+  become_user: "{{ jira_user }}"
+  notify: bounce jira
+
 - name: upstart script
   become: yes
   template: src=etc/init/jira.conf.j2
