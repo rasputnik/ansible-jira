@@ -3,5 +3,7 @@
 - hosts: jiras
   roles:
     - openjdk8
-    - jira
     - mysql
+    - jira
+    - jiradb
+    - postinstall

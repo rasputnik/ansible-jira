@@ -1,0 +1,19 @@
+postinstall_msg: |
+
+   Jira needs manual input to finish the installation.
+   
+   1. go to http://{{ ansible_hostname }}:8080
+   
+   2. select : I'll set it up myself and click Next
+   
+   3. on 'Database Setup' choose 'My Own Database' and enter:
+   
+         Database Type : MySQL
+         Hostname      : localhost
+         Database      : {{ jira_dbname }}
+         Username      : {{ jira_dbuser }}
+         Password      : {{ jira_dbpass }}
+   
+   4. Click 'Test Connection' and then 'Next' to populate the db.
+   
+   5. Continue the installation as needed.

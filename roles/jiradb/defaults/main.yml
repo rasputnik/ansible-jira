@@ -1,0 +1,7 @@
+---
+
+jira_dbuser: jira
+jira_dbpass: jira
+
+jira_dbhost: localhost
+jira_dbname: jira

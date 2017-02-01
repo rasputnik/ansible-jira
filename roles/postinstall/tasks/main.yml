@@ -1,0 +1,4 @@
+---
+
+- name: provide info for manual entry at {{ inventory_hostname }}:8080
+  debug: msg="{{ postinstall_msg.split('\n') }}"
