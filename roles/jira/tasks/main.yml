@@ -12,7 +12,7 @@
   become_user: "{{ jira_user }}"
   command: curl -s -O {{ jira_tarurl }}
            creates="{{ jira_tarcache }}"
-           chdir="{{ jira_userhome }}"
+           chdir="{{ jira_userhome }}" warn=no
 
 - name: create JIRA_HOME = {{ jira_home }}
   become: yes
