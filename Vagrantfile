@@ -7,7 +7,7 @@
 # and just read vagrant/hosts directly.
 
 hosts = [
-  {:name => "jira1",  :ip => "10.11.22.100", :ram => 1536},
+  {:name => "jira1",  :ip => "10.11.22.100", :ram => 2048},
 ]
 
 Vagrant.configure("2") do |config|
@@ -33,6 +33,7 @@ Vagrant.configure("2") do |config|
 
       c.vm.provider("virtualbox") do |vb|
         vb.memory = host[:ram]
+        vb.linked_clone = true
       end
 
       # turn off shared folder
