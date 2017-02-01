@@ -4,9 +4,9 @@ jira_version: atlassian-jira-6.4.14
 
 # shouldn't need to change the rest of these
 
-jira_user: jira
+jira_user: atlassian
 # i.e. '~jira' - not to be confused with jira_home
-jira_userhome: /opt/jira
+jira_userhome: "/opt/{{ jira_user }}"
 
 # jira_distdir == versioned install directory
 # e.g /opt/jira/atlassian-jira-6.4.14-standalone
