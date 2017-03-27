@@ -1,6 +1,9 @@
 ---
 
 - hosts: jiras
+  become: yes
+  # NB: this is overridden in several tasks
+  become_user: root
   roles:
     - openjdk8
     - mysql

@@ -1,27 +1,23 @@
 ---
 
 - name: create {{ jira_user }} account
-  become: yes
   user: name={{ jira_user }} comment="Jira"
         createhome=yes home={{ jira_userhome }}
 
 # workaround for SNI support, see:
 #   https://github.com/ansible/ansible-modules-core/issues/1716
 - name: download {{ jira_tarurl }}
-  become: yes
   become_user: "{{ jira_user }}"
   command: curl -s -O {{ jira_tarurl }}
            creates="{{ jira_tarcache }}"
            chdir="{{ jira_userhome }}" warn=no
 
 - name: create JIRA_HOME = {{ jira_home }}
-  become: yes
   become_user: "{{ jira_user }}"
   file: path={{ jira_home }} state=directory
   notify: bounce jira
   
 - name: extract {{ jira_tarcache }} to {{ jira_home }}
-  become: yes
   become_user: "{{ jira_user }}"
   unarchive: src={{ jira_tarcache }} dest={{ jira_userhome }}
              remote_src=yes creates={{ jira_distdir }}
@@ -30,17 +26,14 @@
 - name: add mysql 5.1.40 JDBC driver
   copy: src=mysql-connector-java-5.1.40-bin.jar
         dest="{{ jira_distdir }}/lib/mysql-connector-java-5.1.40-bin.jar"
-  become: yes
   become_user: "{{ jira_user }}"
   notify: bounce jira
 
 - name: upstart script
-  become: yes
   template: src=etc/init/jira.conf.j2
             dest=/etc/init/jira.conf
             mode=0555 owner=root group=root
   notify: bounce jira
 
 - name: start jira service
-  become: yes
   service: name=jira state=started enabled=yes

@@ -1,19 +1,13 @@
 ---
 
 - name: install MySQL-python
-  become: yes
-  become_user: root
   yum: name=MySQL-python state=present
 
 - name: create jira db
   mysql_db: name={{ jira_dbname }}
             encoding=utf8
-  become: yes
-  become_user: root
 
 - name: create jira db account
-  become: yes
-  become_user: root
   mysql_user: name={{ jira_dbuser }}
               password={{ jira_dbpass }}
               priv={{ jira_dbname }}.*:ALL
