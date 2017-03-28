@@ -1,0 +1,7 @@
+---
+
+mysql56_rpm: MySQL-server-5.6.35-1.el6.x86_64.rpm
+mysql56_rpmurl: "https://cdn.mysql.com//Downloads/MySQL-5.6/{{ mysql56_rpm }}"
+
+mysql56_rpmpath: "/root/{{  mysql56_rpm }}"
+

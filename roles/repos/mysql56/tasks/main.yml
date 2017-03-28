@@ -1,0 +1,13 @@
+---
+
+- name: setup mysql yum repo
+  copy:
+    src: ".{{ item }}"
+    dest: "{{ item }}"
+    mode: 0444
+    owner: root
+    group: root
+  with_items:
+    - /etc/yum.repos.d/mysql-community.repo
+    - /etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
+  
