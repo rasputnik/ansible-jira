@@ -5,8 +5,9 @@
   # NB: this is overridden in several tasks
   become_user: root
   roles:
-    - openjdk8
-    - mysql
+    - oraclejdk8
+    - repos/mysql56
+    - mysql56
     - jira
     - jiradb
     - postinstall
