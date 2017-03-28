@@ -1,0 +1,5 @@
+---
+
+- name: install oracle jdk8
+  debug:
+    msg: hope you have this installed or good luck son
