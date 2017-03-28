@@ -1,6 +1,6 @@
 ---
 
-jira_version: atlassian-jira-6.4.14
+jira_version: atlassian-jira-software-7.3.3
 
 # shouldn't need to change the rest of these
 
@@ -20,3 +20,5 @@ jira_home: "{{ jira_userhome }}/jirahome"
 jira_tarball: "{{ jira_version }}.tar.gz"
 jira_tarurl: "https://downloads.atlassian.com/software/jira/downloads/{{ jira_tarball }}"
 jira_tarcache: "{{ jira_userhome }}/{{ jira_tarball }}"
+
+jira_mysqljar: mysql-connector-java-5.1.41-bin.jar
