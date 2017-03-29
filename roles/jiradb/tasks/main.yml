@@ -6,6 +6,7 @@
 - name: create jira db
   mysql_db: name={{ jira_dbname }}
             encoding=utf8
+            collation=utf8_bin
 
 - name: create jira db account
   mysql_user: name={{ jira_dbuser }}
