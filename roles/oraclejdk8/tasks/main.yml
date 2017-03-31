@@ -1,5 +1,18 @@
 ---
 
-- name: install oracle jdk8
+- name: apology
   debug:
-    msg: hope you have this installed or good luck son
+    msg: i cannot legally ship oracle jdk8. checking for presence
+
+- name: check java version
+  command: "{{ java8_home }}/bin/java -version"
+  register: javaver
+
+- name: check output for things that look like Oracle JDK8
+  when: '"{{ item }}" not in javaver.stderr'
+  fail:
+    msg: "java -version gave: {{ javaver.stderr }}"
+  with_items:
+    - Java HotSpot
+    - 1.8.
+    - Java(TM)
